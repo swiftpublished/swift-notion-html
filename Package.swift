@@ -5,19 +5,35 @@ import PackageDescription
 
 let package = Package(
     name: "swift-notion-html",
+    platforms: [
+        .macOS(.v13)
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "swift-notion-html",
-            targets: ["swift-notion-html"]),
+            name: "NotionHtml",
+            targets: ["NotionHtml"]
+        )
+    ],
+    dependencies: [
+        .package(path: "../HTMLDSL"),
+        .package(path: "../swift-notion-parsing")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "swift-notion-html"),
+            name: "NotionHtml",
+            dependencies: [
+                "HTMLDSL",
+                .product(name: "NotionParsing", package: "swift-notion-parsing")
+            ],
+            path: "Sources/HTML"
+        ),
         .testTarget(
-            name: "swift-notion-htmlTests",
-            dependencies: ["swift-notion-html"]),
+            name: "NotionHtmlTests",
+            dependencies: ["NotionHtml"],
+            path: "Tests/HTMLTests"
+        )
     ]
 )

@@ -1,7 +1,7 @@
 import XCTest
-@testable import swift_notion_html
+@testable import NotionHtml
 
-final class swift_notion_htmlTests: XCTestCase {
+final class HTMLTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest
