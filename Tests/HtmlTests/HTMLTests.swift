@@ -3,7 +3,7 @@ import XCTest
 import NotionParsing
 
 final class HTMLTests: XCTestCase {
-    func testSimpleParagraph() throws {
+    func test_simple_paragraph() throws {
         let page: Page = .paragraph([
             .text("This is a Paragraph")
         ])
@@ -28,7 +28,7 @@ final class HTMLTests: XCTestCase {
         XCTAssertEqual(document.element, expected)
     }
 
-    func testBoldParagraph() throws {
+    func test_bold_paragraph() throws {
         let page: Page = .paragraph([
             .text("This is a Paragraph", bold: true)
         ])
@@ -53,7 +53,7 @@ final class HTMLTests: XCTestCase {
         XCTAssertEqual(document.element, expected)
     }
 
-    func testBoldAndItalicParagraph() throws {
+    func test_bold_and_italic_paragraph() throws {
         let page: Page = .paragraph([
             .text("This is a Paragraph", bold: true, italic: true)
         ])
@@ -78,7 +78,7 @@ final class HTMLTests: XCTestCase {
         XCTAssertEqual(document.element, expected)
     }
 
-    func testSimpleParagraphWithPartBold() throws {
+    func test_simple_bold_paragraph() throws {
         let page: Page = .paragraph([
             .text("This is "),
             .text("bold", bold: true)
@@ -104,7 +104,7 @@ final class HTMLTests: XCTestCase {
         XCTAssertEqual(document.element, expected)
     }
 
-    func testSimpleParagraphWithPartBoldAndItalic() throws {
+    func test_simple_bold_italic_paragraph() throws {
         let page: Page = .paragraph([
             .text("This is "),
             .text("bold & italic", bold: true, italic: true)
@@ -122,6 +122,34 @@ final class HTMLTests: XCTestCase {
         <h1> Notion Test Article Title </h1>
         <p>
         This is <i><b>bold & italic</b></i>
+        </p>
+        </body>
+        </html>
+        """
+
+        XCTAssertEqual(document.element, expected)
+    }
+
+    func test_simple_bold_bold_italic_paragraph() throws {
+        let page: Page = .paragraph([
+            .text("This is normal, "),
+            .text("bold", bold: true),
+            .text(", "),
+            .text("bold & italic", bold: true, italic: true)
+        ])
+
+        let document = html(for: page)
+
+        let expected = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <title> Notion Test Article </title>
+        </head>
+        <body>
+        <h1> Notion Test Article Title </h1>
+        <p>
+        This is normal, <b>bold</b>, <i><b>bold & italic</b></i>
         </p>
         </body>
         </html>
