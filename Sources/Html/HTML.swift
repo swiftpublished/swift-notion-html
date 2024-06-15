@@ -1,7 +1,7 @@
 import HTMLDSL
 import NotionParsing
 
-func html(for page: Page) -> some View {
+public func html(for page: Page) -> some View {
     Document {
         HTML {
             Head {
