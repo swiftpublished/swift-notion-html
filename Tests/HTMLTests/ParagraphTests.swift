@@ -1,6 +1,7 @@
 import XCTest
 @testable import NotionHTML
 import NotionParsing
+@testable import NotionParsingTestHelpers
 
 final class ParagraphTests: XCTestCase {
     func test_simple_paragraph() throws {
@@ -21,7 +22,7 @@ final class ParagraphTests: XCTestCase {
 
     func test_bold_paragraph() throws {
         let block: Block = .paragraph([
-            .text("This is a Paragraph", bold: true)
+            .text("This is a Paragraph", .bold)
         ])
 
         let paragraph = htmlBlock(for: block)
@@ -37,7 +38,7 @@ final class ParagraphTests: XCTestCase {
 
     func test_bold_and_italic_paragraph() throws {
         let block: Block = .paragraph([
-            .text("This is a Paragraph", bold: true, italic: true)
+            .text("This is a Paragraph", .bold_and_italic)
         ])
 
         let paragraph = htmlBlock(for: block)
@@ -54,7 +55,7 @@ final class ParagraphTests: XCTestCase {
     func test_simple_bold_paragraph() throws {
         let block: Block = .paragraph([
             .text("This is "),
-            .text("bold", bold: true)
+            .text("bold", .bold)
         ])
 
         let paragraph = htmlBlock(for: block)
@@ -71,7 +72,7 @@ final class ParagraphTests: XCTestCase {
     func test_simple_bold_italic_paragraph() throws {
         let block: Block = .paragraph([
             .text("This is "),
-            .text("bold & italic", bold: true, italic: true)
+            .text("bold & italic", .bold_and_italic)
         ])
 
         let paragraph = htmlBlock(for: block)
@@ -88,9 +89,9 @@ final class ParagraphTests: XCTestCase {
     func test_simple_bold_bold_italic_paragraph() throws {
         let block: Block = .paragraph([
             .text("This is normal, "),
-            .text("bold", bold: true),
+            .text("bold", .bold),
             .text(", "),
-            .text("bold & italic", bold: true, italic: true)
+            .text("bold & italic", .bold_and_italic)
         ])
 
         let paragraph = htmlBlock(for: block)
@@ -102,33 +103,5 @@ final class ParagraphTests: XCTestCase {
         """
 
         XCTAssertEqual(paragraph.element, expected)
-    }
-}
-
-private extension Block {
-    static func paragraph(_ richTexts: [NotionParsing.RichText]) -> Self {
-        let paragraph = Block.Paragraph(richTexts: richTexts, children: nil)
-        let block = Block(
-            id: "101",
-            hasChildren: false,
-            type: .paragraph(paragraph),
-            level: nil,
-            children: nil
-        )
-        return block
-    }
-}
-
-private extension NotionParsing.RichText {
-    static func text(_ text: String, bold: Bool = false, italic: Bool = false) -> Self {
-        let text = RichText.Types.Text(content: text, link: nil)
-        let annotations = RichText.Annotations(
-            bold: bold,
-            italic: italic,
-            strikethrough: false,
-            underline: false,
-            code: false
-        )
-        return RichText(type: .text(text), annotations: annotations)
     }
 }

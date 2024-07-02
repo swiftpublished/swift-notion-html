@@ -32,7 +32,10 @@ let package = Package(
         ),
         .testTarget(
             name: "NotionHtmlTests",
-            dependencies: ["NotionHTML"],
+            dependencies: [
+                "NotionHTML",
+                .product(name: "NotionParsingTestHelpers", package: "swift-notion-parsing")
+            ],
             path: "Tests/HTMLTests"
         )
     ]

@@ -3,7 +3,7 @@ import NotionParsing
 
 public func htmlBody(for page: Page) -> some HTMLBodyContentView {
     Div {
-        Headings(page.properties.title.richTexts.map(\.type.description).joined(), type: .h1)
+        Headings(richTexts: page.properties.title.richTexts, type: .h1)
             .identifyBy(cssClass: .notion(.heading1))
 
         for block in page.content?.blocks ?? [] {
