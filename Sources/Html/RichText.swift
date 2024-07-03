@@ -25,6 +25,15 @@ struct RichText: HTMLBodyTextContentView {
             body = body.underline
         }
 
+        switch richText.type {
+        case .text(let text):
+            if let link = text.link {
+                body = Link(text: body, url: link.url.absoluteString)
+                    .identifyBy(cssClass: .notion(.link))
+                    .element
+            }
+        }
+
         self.body = body
     }
 }
