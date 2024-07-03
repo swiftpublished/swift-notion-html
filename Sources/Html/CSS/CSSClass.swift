@@ -2,8 +2,10 @@ import HTMLDSL
 
 public extension CSSClass {
     enum Block: String {
-        case page
         case heading1
+        case heading2
+        case heading3
+        case page
         case paragraph
     }
 
