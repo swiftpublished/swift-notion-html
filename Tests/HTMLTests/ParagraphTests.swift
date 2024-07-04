@@ -9,7 +9,7 @@ final class ParagraphTests: XCTestCase {
             .text("This is a Paragraph")
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
@@ -25,7 +25,7 @@ final class ParagraphTests: XCTestCase {
             .text("This is a Paragraph", .bold)
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
@@ -41,7 +41,7 @@ final class ParagraphTests: XCTestCase {
             .text("This is a Paragraph", .bold_and_italic)
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
@@ -58,7 +58,7 @@ final class ParagraphTests: XCTestCase {
             .text("bold", .bold)
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
@@ -75,7 +75,7 @@ final class ParagraphTests: XCTestCase {
             .text("bold & italic", .bold_and_italic)
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
@@ -94,7 +94,7 @@ final class ParagraphTests: XCTestCase {
             .text("bold & italic", .bold_and_italic)
         ])
 
-        let paragraph = htmlBlock(for: block)
+        let paragraph = try htmlBlock(for: block)
 
         let expected = """
         <p class="notion-paragraph">
