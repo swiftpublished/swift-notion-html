@@ -46,5 +46,7 @@ func htmlBlock(for block: Block) throws -> some HTMLBodyContentView {
     case .paragraph(let paragraph):
         Paragraphs(richTexts: paragraph.richTexts)
             .identifyBy(cssClass: .notion(.paragraph))
+    case .quote:
+        preconditionFailure("Not Handled")
     }
 }
