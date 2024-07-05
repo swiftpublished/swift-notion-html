@@ -23,8 +23,20 @@ func htmlBlock(for block: Block) throws -> some HTMLBodyContentView {
             )
         case .external(let file):
             if let alternateText = image.alternateText {
-                Image(file.url.absoluteString, alternateText: alternateText)
-                    .identifyBy(cssClass: .notion(.image))
+                try ThrowingView {
+                    if let caption = image.caption {
+                        Div {
+                            Image(file.url.absoluteString, alternateText: alternateText)
+                                .identifyBy(cssClass: .notion(.image))
+                            Paragraphs(richTexts: caption)
+                                .identifyBy(cssClass: .notion(.caption))
+                        }
+                    } else {
+                        try ThrowingView(
+                            throwing: NotionHTMLError.message("Try not to use an Image without a caption")
+                        )
+                    }
+                }
             } else {
                 try ThrowingView(
                     throwing: NotionHTMLError.message("Don't use an Image without an alternate text")
