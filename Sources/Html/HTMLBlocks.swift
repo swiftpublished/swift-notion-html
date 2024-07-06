@@ -7,8 +7,12 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     case .bulletedListItem:
         preconditionFailure("Not Handled")
     case .code(let code):
-        Pre(Code(code.plainText).element)
-            .identifyBy(cssClass: CSSClass(stringLiteral: "language-\(code.language.rawValue)"))
+        Div {
+            Pre(Code(code.plainText).element)
+                .identifyBy(cssClasses: ["language-\(code.language.rawValue)", .notion(.code)])
+            Paragraphs(richTexts: code.caption ?? [])
+                .identifyBy(cssClass: .notion(.caption))
+        }
     case .heading1(let heading):
         Headings(richTexts: heading.richTexts, type: .h2)
             .identifyBy(cssClass: .notion(.heading1))

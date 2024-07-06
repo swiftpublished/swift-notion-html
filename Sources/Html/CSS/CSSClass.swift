@@ -3,6 +3,7 @@ import HTMLDSL
 public extension CSSClass {
     enum Block: String {
         case caption
+        case code
         case heading1
         case heading2
         case heading3
