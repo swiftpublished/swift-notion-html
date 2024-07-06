@@ -6,6 +6,9 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
     case .bulletedListItem:
         preconditionFailure("Not Handled")
+    case .code(let code):
+        Pre(Code(code.plainText).element)
+            .identifyBy(cssClass: CSSClass(stringLiteral: "language-\(code.language.rawValue)"))
     case .heading1(let heading):
         Headings(richTexts: heading.richTexts, type: .h2)
             .identifyBy(cssClass: .notion(.heading1))

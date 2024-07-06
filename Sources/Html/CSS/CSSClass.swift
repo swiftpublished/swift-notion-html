@@ -1,7 +1,7 @@
 import HTMLDSL
 
 public extension CSSClass {
-    public enum Block: String {
+    enum Block: String {
         case caption
         case heading1
         case heading2

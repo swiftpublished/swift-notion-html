@@ -10,7 +10,7 @@ final class ImageTests: XCTestCase {
             expiry: "2024-01-01T00:00:00.000Z"
         )
 
-        XCTAssertThrowsError(try htmlBlock(for: block)) { error in
+        XCTAssertThrowsError(htmlBlock(for: block)) { error in
             XCTAssertTrue(error is NotionHTMLError)
             XCTAssertEqual(error.localizedDescription, "Don't use Notion Hosted Files")
         }
@@ -19,7 +19,7 @@ final class ImageTests: XCTestCase {
     func test_external_file_without_an_alternate_text() {
         let block: Block = .externalImage(url: "https://host.com/image.png", caption: nil)
 
-        XCTAssertThrowsError(try htmlBlock(for: block)) { error in
+        XCTAssertThrowsError(htmlBlock(for: block)) { error in
             XCTAssertTrue(error is NotionHTMLError)
             XCTAssertEqual(error.localizedDescription, "Don't use an Image without an alternate text")
         }
@@ -30,7 +30,7 @@ final class ImageTests: XCTestCase {
             url: "https://host.com/image.png", caption: [.text("Hello")]
         )
 
-        let image = try htmlBlock(for: block)
+        let image = htmlBlock(for: block)
 
         let expected = """
         <img src="https://host.com/image.png" alt="Hello" class="notion-image">
