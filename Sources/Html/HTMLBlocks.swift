@@ -8,7 +8,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
         preconditionFailure("Not Handled")
     case .code(let code):
         Div {
-            Pre(Code(code.plainText).element)
+            Pre(Code(code.richTexts.plainTexts).element)
                 .identifyBy(cssClasses: ["language-\(code.language.rawValue)", .notion(.code)])
             Paragraphs(richTexts: code.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
