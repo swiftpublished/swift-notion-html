@@ -9,11 +9,11 @@ final class PageTests: XCTestCase {
             title: [.text("Title")]
         )
 
-        let body = try htmlBody(for: page)
+        let body = htmlBody(for: page)
 
         let expected = """
         <div class="notion-page">
-        <h1 class="notion-heading1"> Title </h1>
+        <h1 class="notion-title"> Title </h1>
         </div>
         """
 
@@ -26,11 +26,11 @@ final class PageTests: XCTestCase {
             paragraph: [.text("Paragraph")]
         )
 
-        let body = try htmlBody(for: page)
+        let body = htmlBody(for: page)
 
         let expected = """
         <div class="notion-page">
-        <h1 class="notion-heading1"> Title </h1>
+        <h1 class="notion-title"> Title </h1>
         <p class="notion-paragraph">
         Paragraph
         </p>
@@ -52,11 +52,11 @@ final class PageTests: XCTestCase {
             ]
         )
 
-        let body = try htmlBody(for: page)
+        let body = htmlBody(for: page)
 
         let expected = """
         <div class="notion-page">
-        <h1 class="notion-heading1"> Hello <i>World</i> </h1>
+        <h1 class="notion-title"> Hello <i>World</i> </h1>
         <p class="notion-paragraph">
         Welcome <b>aboard</b>
         </p>

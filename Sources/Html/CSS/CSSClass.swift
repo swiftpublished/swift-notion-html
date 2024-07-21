@@ -12,6 +12,8 @@ public extension CSSClass {
         case page
         case paragraph
         case title
+        case video_iframe = "video-iframe"
+        case video_iframe_container = "video-iframe-container"
     }
 
     static func notion(_ block: Block) -> Self {

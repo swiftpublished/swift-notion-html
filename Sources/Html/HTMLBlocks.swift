@@ -34,5 +34,21 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             .identifyBy(cssClass: .notion(.paragraph))
     case .quote:
         preconditionFailure("Not Handled")
+    case .video(let video):
+        switch video.file.type {
+        case .notion:
+            preconditionFailure("Not Handled")
+        case .external:
+            Div {
+                Div {
+                    EmbeddedVideo(video.file.type.url.absoluteString)
+                        .identifyBy(cssClass: .notion(.video_iframe))
+                }
+                .identifyBy(cssClass: .notion(.video_iframe_container))
+
+                Paragraphs(richTexts: video.file.caption ?? [])
+                    .identifyBy(cssClass: .notion(.caption))
+            }
+        }
     }
 }
