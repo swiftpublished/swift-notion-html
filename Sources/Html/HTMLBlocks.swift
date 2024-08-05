@@ -4,13 +4,22 @@ import NotionParsing
 @ViewBuilder
 func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
-    case .bulletedListItem:
-        preconditionFailure("Not Handled")
     case .code(let code):
         Div {
             Pre(Code(code.richTexts.plainTexts).element)
                 .identifyBy(cssClasses: ["language-\(code.language.rawValue)", .notion(.code)])
             Paragraphs(richTexts: code.caption ?? [])
+                .identifyBy(cssClass: .notion(.caption))
+        }
+    case .embed(let embed):
+        Div {
+            Div {
+                Embed(embed.url.absoluteString)
+                    .identifyBy(cssClass: .notion(.iframe))
+            }
+            .identifyBy(cssClasses: [.notion(.iframe_container)] + embed.cssClasses)
+
+            Paragraphs(richTexts: embed.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
         }
     case .heading1(let heading):
@@ -32,8 +41,6 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     case .paragraph(let paragraph):
         Paragraphs(richTexts: paragraph.richTexts)
             .identifyBy(cssClass: .notion(.paragraph))
-    case .quote:
-        preconditionFailure("Not Handled")
     case .video(let video):
         switch video.file.type {
         case .notion:
@@ -41,14 +48,16 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
         case .external:
             Div {
                 Div {
-                    EmbeddedVideo(video.file.type.url.absoluteString)
-                        .identifyBy(cssClass: .notion(.video_iframe))
+                    Embed(video.file.type.url.absoluteString)
+                        .identifyBy(cssClass: .notion(.iframe))
                 }
-                .identifyBy(cssClass: .notion(.video_iframe_container))
+                .identifyBy(cssClass: .notion(.iframe_container))
 
                 Paragraphs(richTexts: video.file.caption ?? [])
                     .identifyBy(cssClass: .notion(.caption))
             }
         }
+    default:
+        preconditionFailure("Not Handled: \(block.type)")
     }
 }

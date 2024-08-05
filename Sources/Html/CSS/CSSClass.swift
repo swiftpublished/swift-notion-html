@@ -7,13 +7,14 @@ public extension CSSClass {
         case heading1
         case heading2
         case heading3
+        case iframe
+        case iframe_container = "iframe-container"
+        case iframe_container_podcast = "iframe-container-podcast"
         case image
         case link
         case page
         case paragraph
         case title
-        case video_iframe = "video-iframe"
-        case video_iframe_container = "video-iframe-container"
     }
 
     static func notion(_ block: Block) -> Self {
