@@ -11,6 +11,10 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             Paragraphs(richTexts: code.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
         }
+
+    case .divider:
+        Divider()
+
     case .embed(let embed):
         Div {
             Div {
@@ -41,6 +45,19 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     case .paragraph(let paragraph):
         Paragraphs(richTexts: paragraph.richTexts)
             .identifyBy(cssClass: .notion(.paragraph))
+
+    case .quote(let quote):
+        Div {
+            Div {
+                Paragraphs(String(quote.richTexts.plainTexts.split(separator: "\nAuthor - ").first ?? ""))
+                    .identifyBy(cssClass: .notion(.quote))
+                Paragraphs(String(quote.richTexts.plainTexts.split(separator: "\nAuthor - ").last ?? ""))
+                    .identifyBy(cssClass: .notion(.quote_author))
+            }
+            .identifyBy(cssClass: .notion(.quote_container))
+        }
+        .identifyBy(cssClass: .notion(.quote_author_container))
+
     case .video(let video):
         switch video.file.type {
         case .notion:

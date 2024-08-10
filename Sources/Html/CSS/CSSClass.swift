@@ -14,6 +14,10 @@ public extension CSSClass {
         case link
         case page
         case paragraph
+        case quote
+        case quote_author = "quote-author"
+        case quote_author_container = "quote-author-container"
+        case quote_container = "quote-container"
         case title
     }
 
