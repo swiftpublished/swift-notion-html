@@ -3,7 +3,7 @@ import NotionParsing
 
 extension Block.Embed {
     var cssClasses: [CSSClass] {
-        guard let host = url.host() else {
+        guard let host = url.host else {
             return []
         }
 
