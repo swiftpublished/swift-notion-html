@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1530"
-   version = "2.2">
+   LastUpgradeVersion = "1540"
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
@@ -10,23 +10,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <AutocreatedTestPlanReference>
-            </AutocreatedTestPlanReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "NotionHtml"
-               BuildableName = "NotionHtml"
-               BlueprintName = "NotionHtml"
+               BlueprintIdentifier = "NotionHTML"
+               BuildableName = "NotionHTML"
+               BlueprintName = "NotionHTML"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -71,9 +62,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "NotionHtml"
-            BuildableName = "NotionHtml"
-            BlueprintName = "NotionHtml"
+            BlueprintIdentifier = "NotionHTML"
+            BuildableName = "NotionHTML"
+            BlueprintName = "NotionHTML"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
