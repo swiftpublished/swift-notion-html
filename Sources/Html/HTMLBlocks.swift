@@ -5,7 +5,7 @@ import NotionParsing
 func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
     case .code(let code):
-        Div {
+        Group {
             Pre(Code(code.richTexts.plainTexts).element)
                 .identifyBy(cssClasses: ["language-\(code.language.rawValue)", .notion(.code)])
             Paragraphs(richTexts: code.caption ?? [])

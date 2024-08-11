@@ -18,6 +18,9 @@ struct RichText: HTMLBodyTextContentView {
         if richText.annotations.italic {
             body = body.italic
         }
+        if richText.annotations.code {
+            body = body.code
+        }
         if richText.annotations.strikethrough {
             body = body.delete
         }
