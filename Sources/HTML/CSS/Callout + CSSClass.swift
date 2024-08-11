@@ -8,6 +8,10 @@ extension Block.Callout {
             switch emoji {
             case "🗒️":
                 return [.notion(.callout_note)]
+            case "📢":
+                return [.notion(.callout_important)]
+            case "⚠️":
+                return [.notion(.callout_warning)]
             default:
                 return []
             }
@@ -23,6 +27,10 @@ extension Block.Callout {
             switch emoji {
             case "🗒️":
                 return [.notion(.callout_note_container)]
+            case "📢":
+                return [.notion(.callout_important_container)]
+            case "⚠️":
+                return [.notion(.callout_warning_container)]
             default:
                 return []
             }

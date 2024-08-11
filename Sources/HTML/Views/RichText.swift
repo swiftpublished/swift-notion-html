@@ -9,7 +9,7 @@ struct RichText: HTMLBodyTextContentView {
     let text: String
 
     init(_ richText: NotionParsing.RichText) {
-        self.text = richText.type.description
+        self.text = richText.type.description.replacingOccurrences(of: "\n", with: "<br>")
 
         var body = text
         if richText.annotations.bold {
