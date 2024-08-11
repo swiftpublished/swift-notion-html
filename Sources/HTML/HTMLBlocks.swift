@@ -4,6 +4,13 @@ import NotionParsing
 @ViewBuilder
 func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
+    case .callout(let callout):
+        Div {
+            Paragraphs(richTexts: callout.richTexts)
+                .identifyBy(cssClasses: [.notion(.callout)] + callout.cssClasses)
+        }
+        .identifyBy(cssClasses: [.notion(.callout_container)] + callout.containerCSSClasses)
+
     case .code(let code):
         Group {
             Pre(Code(code.richTexts.plainTexts).element)
