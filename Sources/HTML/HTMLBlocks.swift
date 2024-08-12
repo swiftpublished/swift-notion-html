@@ -6,8 +6,10 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
     case .callout(let callout):
         Div {
-            Paragraphs(richTexts: callout.richTexts)
+            Paragraphs(callout.title)
                 .identifyBy(cssClasses: [.notion(.callout)] + callout.cssClasses)
+            Paragraphs(richTexts: callout.richTexts)
+                .identifyBy(cssClass: .notion(.paragraph))
         }
         .identifyBy(cssClasses: [.notion(.callout_container)] + callout.containerCSSClasses)
 
