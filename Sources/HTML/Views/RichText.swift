@@ -35,6 +35,9 @@ struct RichText: HTMLBodyTextContentView {
                     .identifyBy(cssClass: .notion(.link))
                     .element
             }
+
+        case .mention:
+            break
         }
 
         self.body = body
