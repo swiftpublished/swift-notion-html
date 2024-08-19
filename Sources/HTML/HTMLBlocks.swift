@@ -35,15 +35,19 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             Paragraphs(richTexts: embed.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
         }
+
     case .heading1(let heading):
         Headings(richTexts: heading.richTexts, type: .h2)
             .identifyBy(cssClass: .notion(.heading1))
+
     case .heading2(let heading):
         Headings(richTexts: heading.richTexts, type: .h3)
             .identifyBy(cssClass: .notion(.heading2))
+
     case .heading3(let heading):
         Headings(richTexts: heading.richTexts, type: .h4)
             .identifyBy(cssClass: .notion(.heading3))
+
     case .image(let image):
         Div {
             Image(image.file.type.url.absoluteString, alternateText: image.file.alternateText ?? .empty)
@@ -51,6 +55,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             Paragraphs(richTexts: image.file.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
         }
+
     case .paragraph(let paragraph):
         Paragraphs(richTexts: paragraph.richTexts)
             .identifyBy(cssClass: .notion(.paragraph))
@@ -71,10 +76,11 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
         switch video.file.type {
         case .notion:
             preconditionFailure("Not Handled")
+
         case .external:
             Div {
                 Div {
-                    Embed(video.file.type.url.absoluteString)
+                    VideoEmbed(video.file.type.url.absoluteString)
                         .identifyBy(cssClass: .notion(.iframe))
                 }
                 .identifyBy(cssClass: .notion(.iframe_container))
@@ -83,6 +89,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
                     .identifyBy(cssClass: .notion(.caption))
             }
         }
+
     default:
         preconditionFailure("Not Handled: \(block.type)")
     }
