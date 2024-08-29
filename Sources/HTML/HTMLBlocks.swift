@@ -4,6 +4,13 @@ import NotionParsing
 @ViewBuilder
 func htmlBlock(for block: Block) -> some HTMLBodyContentView {
     switch block.type {
+    case .bulletedListItem(let item):
+        List(type: .unordered) {
+            for htmlRichText in item.richTexts.map(RichText.init) {
+                ListItem(htmlRichText.element)
+            }
+        }
+
     case .callout(let callout):
         Div {
             Paragraphs(callout.title)
