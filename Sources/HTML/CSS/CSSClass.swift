@@ -10,6 +10,8 @@ public extension CSSClass {
         case callout_important_container = "callout-important-container"
         case callout_warning = "callout-warning"
         case callout_warning_container = "callout-warning-container"
+        case callout_tip = "callout-tip"
+        case callout_tip_container = "callout-tip-container"
         case caption
         case code
         case heading1

@@ -12,6 +12,8 @@ extension Block.Callout {
                 return "Important"
             case "❤️":
                 return "Warning"
+            case "💚":
+                return "Tip"
             default:
                 return ""
             }
@@ -31,6 +33,8 @@ extension Block.Callout {
                 return [.notion(.callout_important)]
             case "❤️":
                 return [.notion(.callout_warning)]
+            case "💚":
+                return [.notion(.callout_tip)]
             default:
                 return []
             }
@@ -50,6 +54,8 @@ extension Block.Callout {
                 return [.notion(.callout_important_container)]
             case "❤️":
                 return [.notion(.callout_warning_container)]
+            case "💚":
+                return [.notion(.callout_tip_container)]
             default:
                 return []
             }
