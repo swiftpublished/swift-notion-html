@@ -24,7 +24,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
 
     case .code(let code):
         Group {
-            Pre(Code(code.richTexts.plainTexts).element)
+            Pre(Code(code: code).element)
                 .identifyBy(cssClasses: ["language-\(code.language.rawValue)", .notion(.code)])
             Paragraphs(richTexts: code.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
@@ -63,6 +63,15 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
                 .identifyBy(cssClass: .notion(.image))
             Paragraphs(richTexts: image.file.caption ?? [])
                 .identifyBy(cssClass: .notion(.caption))
+        }
+
+    case .numberedListItem(let item):
+        List(type: .ordered) {
+            ListItem(
+                Paragraphs(richTexts: item.richTexts)
+                    .identifyBy(cssClass: .notion(.paragraph))
+                    .element
+            )
         }
 
     case .paragraph(let paragraph):
