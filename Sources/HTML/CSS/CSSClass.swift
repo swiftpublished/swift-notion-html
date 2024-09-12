@@ -14,6 +14,7 @@ public extension CSSClass {
         case callout_tip_container = "callout-tip-container"
         case caption
         case code
+        case code_inline = "code-inline"
         case heading1
         case heading2
         case heading3

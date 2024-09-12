@@ -19,7 +19,7 @@ struct RichText: HTMLBodyTextContentView {
             body = body.italic
         }
         if richText.annotations.code {
-            body = body.code
+            body = body.code(cssClass: .notion(.code_inline))
         }
         if richText.annotations.strikethrough {
             body = body.delete
