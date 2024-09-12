@@ -96,16 +96,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             preconditionFailure("Not Handled")
 
         case .external:
-            Div {
-                Div {
-                    VideoEmbed(video.file.type.url.absoluteString)
-                        .identifyBy(cssClass: .notion(.iframe))
-                }
-                .identifyBy(cssClass: .notion(.iframe_container))
-
-                Paragraphs(richTexts: video.file.caption ?? [])
-                    .identifyBy(cssClass: .notion(.caption))
-            }
+            Video(video)
         }
 
     default:
