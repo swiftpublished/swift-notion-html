@@ -2,7 +2,7 @@ import HTMLDSL
 import NotionParsing
 
 @ViewBuilder
-func htmlBlock(for block: Block) -> some HTMLBodyContentView {
+func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentView {
     switch block.type {
     case .bulletedListItem(let item):
         List(type: .unordered) {
@@ -96,7 +96,7 @@ func htmlBlock(for block: Block) -> some HTMLBodyContentView {
             preconditionFailure("Not Handled")
 
         case .external:
-            Video(video)
+            Video(video, config: config.video)
         }
 
     default:

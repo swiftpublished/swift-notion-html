@@ -1,7 +1,15 @@
 import HTMLDSL
 import NotionParsing
 
-public func htmlBody(for page: Page) -> some HTMLBodyContentView {
+public struct Config {
+    let video: Video.Config
+
+    public init(video: Video.Config) {
+        self.video = video
+    }
+}
+
+public func htmlBody(for page: Page, with config: Config) -> some HTMLBodyContentView {
     Div {
         Headings(
             richTexts: page.properties.richTitle?.richTexts ?? page.properties.title.richTexts,
@@ -10,7 +18,7 @@ public func htmlBody(for page: Page) -> some HTMLBodyContentView {
         .identifyBy(cssClass: .notion(.title))
 
         for block in page.content?.blocks ?? [] {
-            AnyView(htmlBlock(for: block))
+            AnyView(htmlBlock(for: block, with: config))
         }
     }
     .identifyBy(cssClass: .notion(.page))
