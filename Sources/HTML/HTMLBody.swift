@@ -12,7 +12,7 @@ public struct Config {
 public func htmlBody(for page: Page, with config: Config) -> some HTMLBodyContentView {
     Div {
         Headings(
-            richTexts: page.properties.richTitle?.richTexts ?? page.properties.title.richTexts,
+            richTexts: page.properties.articleTitle?.richTexts ?? page.properties.title.richTexts,
             type: .h1
         )
         .identifyBy(cssClass: .notion(.title))

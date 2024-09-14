@@ -1,14 +1,14 @@
 import HTMLDSL
 import NotionParsing
 
-struct RichText: HTMLBodyTextContentView {
-    let body: String
+public struct RichText: HTMLBodyTextContentView {
+    public let body: String
 
-    var attributes = [Attribute]()
+    public var attributes = [Attribute]()
 
-    let text: String
+    public let text: String
 
-    init(_ richText: NotionParsing.RichText) {
+    public init(_ richText: NotionParsing.RichText) {
         self.text = richText.type.description.replacingOccurrences(of: "\n", with: "<br>")
 
         var body = text
