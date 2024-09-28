@@ -14,13 +14,18 @@ func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentVie
         }
 
     case .callout(let callout):
-        Div {
-            Paragraphs(callout.title)
-                .identifyBy(cssClasses: [.notion(.callout)] + callout.cssClasses)
+        if callout.isIntro {
             Paragraphs(richTexts: callout.richTexts)
-                .identifyBy(cssClass: .notion(.paragraph))
+                .identifyBy(cssClass: .notion(.intro))
+        } else {
+            Div {
+                Paragraphs(callout.title)
+                    .identifyBy(cssClasses: [.notion(.callout)] + callout.cssClasses)
+                Paragraphs(richTexts: callout.richTexts)
+                    .identifyBy(cssClass: .notion(.paragraph))
+            }
+            .identifyBy(cssClasses: [.notion(.callout_container)] + callout.containerCSSClasses)
         }
-        .identifyBy(cssClasses: [.notion(.callout_container)] + callout.containerCSSClasses)
 
     case .code(let code):
         Group {

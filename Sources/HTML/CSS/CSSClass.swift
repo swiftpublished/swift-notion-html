@@ -22,6 +22,7 @@ public extension CSSClass {
         case iframe_container = "iframe-container"
         case iframe_container_podcast = "iframe-container-podcast"
         case image
+        case intro
         case link
         case page
         case paragraph
