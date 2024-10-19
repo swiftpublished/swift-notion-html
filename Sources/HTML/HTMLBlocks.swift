@@ -83,8 +83,16 @@ func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentVie
 
     case .toggle(let toggle):
         if toggle.isIntro {
-            Paragraphs(richTexts: toggle.richTexts)
-                .identifyBy(cssClass: .notion(.intro))
+            for childBlock in block.children ?? [] {
+                switch childBlock.type {
+                case .paragraph(let paragraph):
+                    Paragraphs(richTexts: paragraph.richTexts)
+                        .identifyBy(cssClass: .notion(.intro))
+
+                default:
+                    preconditionFailure("Intro block can only contain paragraphs.")
+                }
+            }
         } else {
             Div {
                 Paragraphs(toggle.title)
