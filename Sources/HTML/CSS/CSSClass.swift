@@ -2,16 +2,6 @@ import HTMLDSL
 
 public extension CSSClass {
     enum Block: String {
-        case callout
-        case callout_container = "callout-container"
-        case callout_note = "callout-note"
-        case callout_note_container = "callout-note-container"
-        case callout_important = "callout-important"
-        case callout_important_container = "callout-important-container"
-        case callout_warning = "callout-warning"
-        case callout_warning_container = "callout-warning-container"
-        case callout_tip = "callout-tip"
-        case callout_tip_container = "callout-tip-container"
         case caption
         case code
         case code_inline = "code-inline"
@@ -31,6 +21,16 @@ public extension CSSClass {
         case quote_author_container = "quote-author-container"
         case quote_container = "quote-container"
         case title
+        case toggle
+        case toggle_container = "toggle-container"
+        case toggle_note = "toggle-note"
+        case toggle_note_container = "toggle-note-container"
+        case toggle_important = "toggle-important"
+        case toggle_important_container = "toggle-important-container"
+        case toggle_warning = "toggle-warning"
+        case toggle_warning_container = "toggle-warning-container"
+        case toggle_tip = "toggle-tip"
+        case toggle_tip_container = "toggle-tip-container"
     }
 
     static func notion(_ block: Block) -> Self {

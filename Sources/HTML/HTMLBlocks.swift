@@ -13,20 +13,6 @@ func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentVie
             )
         }
 
-    case .callout(let callout):
-        if callout.isIntro {
-            Paragraphs(richTexts: callout.richTexts)
-                .identifyBy(cssClass: .notion(.intro))
-        } else {
-            Div {
-                Paragraphs(callout.title)
-                    .identifyBy(cssClasses: [.notion(.callout)] + callout.cssClasses)
-                Paragraphs(richTexts: callout.richTexts)
-                    .identifyBy(cssClass: .notion(.paragraph))
-            }
-            .identifyBy(cssClasses: [.notion(.callout_container)] + callout.containerCSSClasses)
-        }
-
     case .code(let code):
         Group {
             Pre(Code(code: code).element)
@@ -94,6 +80,22 @@ func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentVie
             .identifyBy(cssClass: .notion(.quote_container))
         }
         .identifyBy(cssClass: .notion(.quote_author_container))
+
+    case .toggle(let toggle):
+        if toggle.isIntro {
+            Paragraphs(richTexts: toggle.richTexts)
+                .identifyBy(cssClass: .notion(.intro))
+        } else {
+            Div {
+                Paragraphs(toggle.title)
+                    .identifyBy(cssClasses: [.notion(.toggle)] + toggle.cssClasses)
+
+                for childBlock in block.children ?? [] {
+                    AnyView(htmlBlock(for: childBlock, with: config))
+                }
+            }
+            .identifyBy(cssClasses: [.notion(.toggle_container)] + toggle.containerCSSClasses)
+        }
 
     case .video(let video):
         switch video.file.type {
