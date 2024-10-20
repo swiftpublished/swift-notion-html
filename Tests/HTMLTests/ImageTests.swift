@@ -9,7 +9,7 @@ final class ImageTests: XCTestCase {
             url: "https://host.com/image.png", caption: [.text("Hello")]
         )
 
-        let image = htmlBlock(for: block)
+        let image = htmlBlock(for: block, with: .test)
 
         let expected = """
         <div>

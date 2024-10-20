@@ -9,7 +9,7 @@ final class VideoTests: XCTestCase {
             url: "https://host.com/videoId", caption: [.text("Hello")]
         )
 
-        let video = htmlBlock(for: block)
+        let video = htmlBlock(for: block, with: .test)
 
         let expected = """
         <div class="notion-video-iframe-container">
