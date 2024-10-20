@@ -2,6 +2,9 @@ import HTMLDSL
 
 public extension CSSClass {
     enum Block: String {
+        case callout
+        case callout_emoji = "callout-emoji"
+        case callout_content_container = "callout-content-container"
         case caption
         case code
         case code_inline = "code-inline"

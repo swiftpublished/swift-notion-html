@@ -13,6 +13,9 @@ func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentVie
             )
         }
 
+    case .callout(let callout):
+        Callout(callout)
+
     case .code(let code):
         Group {
             Pre(Code(code: code).element)
