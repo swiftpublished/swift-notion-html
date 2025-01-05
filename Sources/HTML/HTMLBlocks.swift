@@ -2,7 +2,7 @@ import HTMLDSL
 import NotionParsing
 
 @ViewBuilder
-func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentView {
+public func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyContentView {
     switch block.type {
     case .bulletedListItem(let item):
         List(type: .unordered) {
