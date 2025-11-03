@@ -117,6 +117,12 @@ public func htmlBlock(for block: Block, with config: Config) -> some HTMLBodyCon
             Video(video, config: config.video)
         }
 
+    case .table(let table):
+        Table(table, children: block.children ?? [])
+
+    case .tableRow:
+        preconditionFailure("TableRow should be handled as child of Table block")
+
     default:
         preconditionFailure("Not Handled: \(block.type)")
     }

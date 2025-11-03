@@ -34,6 +34,9 @@ public extension CSSClass {
         case toggle_warning_container = "toggle-warning-container"
         case toggle_tip = "toggle-tip"
         case toggle_tip_container = "toggle-tip-container"
+        case table_container = "table-container"
+        case table_header = "table-header"
+        case table_cell = "table-cell"
     }
 
     static func notion(_ block: Block) -> Self {
